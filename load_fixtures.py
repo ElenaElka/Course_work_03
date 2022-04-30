@@ -18,3 +18,4 @@ with app.app_context():
         db.session.commit()
     except IntegrityError:
         print("Fixtures already loaded")
+

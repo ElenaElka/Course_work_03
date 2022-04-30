@@ -17,7 +17,7 @@ class GenresService(BaseService):
         genres = GenreDAO(self._db_session).get_all()
         return GenreSchema(many=True).dump(genres)
 
-    def get_genrs_genres(self, page):
+    def get_limit_genres(self, page):
         limit = current_app.config["ITEMS_PER_PAGE"]
         offset = (page - 1) + limit
         genres = GenreDAO(self._db_session).get_genre_limit(limit=limit, offset=offset)

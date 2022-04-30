@@ -12,7 +12,7 @@ class UserDAO:
         return self._db_session.query(User).filter(User.name == user_name).one_or_none()
 
     def get_user_by_email(self, user_email):
-        return self._db_session.query(User).filter(User.name == user_email).one_or_none()
+        return self._db_session.query(User).filter(User.email == user_email).one_or_none()
 
     def put_user(self, user):
         self._db_session.add(user)
