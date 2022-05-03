@@ -12,11 +12,11 @@ data = read_json("fixtures.json")
 
 with app.app_context():
     for genre in data["genres"]:
-        db.session.add ( Genre ( id=genre["pk"], name=genre["name"] ) )
+        db.session.add (Genre(id=genre["pk"], name=genre["name"]))
         db.session.commit ()
     for director in data["directors"]:
-        db.session.add (Director ( id=director["pk"], name=director["name"] ) )
-        db.session.commit ()
+        db.session.add(Director(id=director["pk"], name=director["name"]))
+        db.session.commit()
     for movie in data["movies"]:
         m = Movie (
             id=movie["pk"],
@@ -28,9 +28,11 @@ with app.app_context():
             genre_id=movie["genre_id"],
             director_id=movie["director_id"]
         )
-
-    try:
+        db.session.add(m)
         db.session.commit()
-    except IntegrityError:
-        print("Fixtures already loaded")
+
+   # try:
+   #    db.session.commit()
+   # except IntegrityError:
+   #    print("Fixtures already loaded")
 
